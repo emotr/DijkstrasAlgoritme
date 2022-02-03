@@ -8,10 +8,11 @@
             int[,] graph = new int[,] { {0, 4, 7, 0},
                                         {4, 0, 0, 8},
                                         {7, 0, 0, 2},
-                                        {0, 8, 2, 0}, };
+                                        {0, 8, 2, 0} }; // Avstand mellom noder
             Dijkstra(graph, 0);
         }
 
+        /** Finn korteste vei mellom V noder */
         private static void Dijkstra(int[,] graph, int source)
         {
             int v = graph.Length;
@@ -47,6 +48,7 @@
             }
         }
 
+        /** Finn minste avstandsindeks */
         private static int FindMinIndex(int[] distance, bool[] visited)
         {
             int minVertex = -1;
