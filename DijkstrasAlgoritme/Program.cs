@@ -1,14 +1,16 @@
-﻿namespace DijkstrasAlgoritme
+﻿using System;
+using System.Diagnostics;
+
+namespace DijkstrasAlgoritme
 {
     public class Program
     {
-        static readonly int V = 12; // Antall noder. Må endres basert på hvilken graph som brukes
         public static void Main(string[] args)
         {
-            int[,] graph = new int[,] { {0, 4, 7, 0},
-                                        {4, 0, 0, 8},
-                                        {7, 0, 0, 2},
-                                        {0, 8, 2, 0} }; // Avstand/vekt mellom noder. V = 4
+            int[,] graph1 = new int[,] { {0, 4, 7, 0},
+                                         {4, 0, 0, 8},
+                                         {7, 0, 0, 2},
+                                         {0, 8, 2, 0} }; // Avstand/vekt mellom noder. V = 4
 
             int[,] graph2 = new int[,] { {0, 4, 5, 0, 0},
                                          {4, 0, 0, 3, 0},
@@ -57,16 +59,30 @@
                                          {0, 0, 0, 0, 0, 0, 4, 0, 2, 0, 0, 0},
                                          {0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 2},
                                          {0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 2, 0} }; // V = 12
-            //Dijkstra(graph, 0);
-            //Dijkstra(graph2, 0);
-            //Dijkstra(graph3, 0);
-            //Dijkstra(graph4, 0);
-            //Dijkstra(graph5, 0);
-            Dijkstra(graph6, 0);
+
+            Stopwatch timer = new();
+            timer.Start();
+            // Første parameter er grafen, andre er start noden og tredje er antall noder i grafen
+            Console.WriteLine("Graf 1: fire noder");
+            Dijkstra(graph1, 0, 4);
+            Console.WriteLine("\nGraf 2: fem noder");
+            Dijkstra(graph2, 0, 5);
+            Console.WriteLine("\nGraf 3: fem noder");
+            Dijkstra(graph3, 0, 5);
+            Console.WriteLine("\nGraf 4: 10 noder");
+            Dijkstra(graph4, 0, 10);
+            Console.WriteLine("\nGraf 5: 11 noder");
+            Dijkstra(graph5, 0, 11);
+            Console.WriteLine("\nGraf 5: 11 noder, start node er 4");
+            Dijkstra(graph5, 4, 11);
+            Console.WriteLine("\nGraf 6: 12 noder");
+            Dijkstra(graph6, 0, 12);
+            timer.Stop();
+            Console.WriteLine("Tid: {0} ms", timer.ElapsedMilliseconds);
         }
 
         /** Finn korteste vei mellom V noder */
-        private static void Dijkstra(int[,] graph, int source)
+        private static void Dijkstra(int[,] graph, int source, int V)
         {
             int v = graph.Length;
             bool[] visited = new bool[v];
@@ -74,14 +90,14 @@
              
             for (int i = 0; i < v; i++) // For hver node i graph
             {
-                distance[i] = int.MaxValue; // Sett distanse til høyest mulig verdi 
+                distance[i] = int.MaxValue; // Sett distanse til alle noder til høyest mulig verdi 
             }
 
-            distance[source] = 0; // Første node har avstand 0
+            distance[source] = 0; // Start node har avstand 0
 
             for (int i = 0; i < V - 1; i++)
             {
-               int minIndex = FindMinIndex(distance, visited); // Finn vertex med minst distanse
+               int minIndex = FindMinIndex(distance, visited, V); // Finn vertex med minst distanse
 
                 visited[minIndex] = true;
 
@@ -103,7 +119,7 @@
         }
 
         /** Finn minste avstandsindeks */
-        private static int FindMinIndex(int[] distance, bool[] visited)
+        private static int FindMinIndex(int[] distance, bool[] visited, int V)
         {
             int minVertex = -1;
             for (int i = 0; i < V; i++)
