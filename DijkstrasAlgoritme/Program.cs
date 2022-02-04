@@ -2,7 +2,7 @@
 {
     public class Program
     {
-        static readonly int V = 5; // Antall noder. Må endres basert på hvilken graph som brukes
+        static readonly int V = 10; // Antall noder. Må endres basert på hvilken graph som brukes
         public static void Main(string[] args)
         {
             int[,] graph = new int[,] { {0, 4, 7, 0},
@@ -21,9 +21,21 @@
                                          {2, 0, 0, 2, 6},
                                          {0, 3, 2, 0, 7},
                                          {0, 0, 6, 7, 0} };
+
+            int[,] graph4 = new int[,] { {0, 3, 0, 4, 0, 0, 0, 0, 0, 0},
+                                         {3, 0, 2, 0, 3, 7, 0, 0, 0, 0},
+                                         {0, 2, 3, 0, 0, 0, 0, 0, 0, 0},
+                                         {4, 0, 3, 0, 0, 5, 0, 6, 0, 0},
+                                         {0, 3, 0, 0, 0, 5, 2, 0, 0, 0},
+                                         {0, 7, 0, 5, 4, 0, 0, 2, 0, 0},
+                                         {0, 0, 0, 0, 2, 0, 0, 0, 2, 0},
+                                         {0, 0, 0, 6, 0, 2, 0, 0, 0, 4},
+                                         {0, 0, 0, 0, 0, 5, 2, 0, 0, 3},
+                                         {0, 0, 0, 0, 0, 0, 0, 4, 3, 0} };
             //Dijkstra(graph, 0);
             //Dijkstra(graph2, 0);
-            Dijkstra(graph3, 0);
+            //Dijkstra(graph3, 0);
+            Dijkstra(graph4, 0);
         }
 
         /** Finn korteste vei mellom V noder */
@@ -56,9 +68,10 @@
             }
 
             // Print løsning
+            Console.WriteLine("Node nr\t     Avstand");
             for (int i = 0; i < V; i++)
             {
-                Console.WriteLine(i + " " + distance[i]);
+                Console.WriteLine("   " +i + " \t\t" + distance[i]);
             }
         }
 
