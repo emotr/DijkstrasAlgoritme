@@ -2,14 +2,28 @@
 {
     public class Program
     {
-        static int V = 4; // Antall noder
+        static readonly int V = 5; // Antall noder. Må endres basert på hvilken graph som brukes
         public static void Main(string[] args)
         {
             int[,] graph = new int[,] { {0, 4, 7, 0},
                                         {4, 0, 0, 8},
                                         {7, 0, 0, 2},
-                                        {0, 8, 2, 0} }; // Avstand mellom noder
-            Dijkstra(graph, 0);
+                                        {0, 8, 2, 0} }; // Avstand/vekt mellom noder
+
+            int[,] graph2 = new int[,] { {0, 4, 5, 0, 0},
+                                         {4, 0, 0, 3, 0},
+                                         {5, 0, 0, 0, 1},
+                                         {0, 3, 0, 0, 3},
+                                         {0, 0, 1, 3, 0} };
+
+            int[,] graph3 = new int[,] { {0, 3, 2, 0, 0},
+                                         {3, 0, 0, 3, 0},
+                                         {2, 0, 0, 2, 6},
+                                         {0, 3, 2, 0, 7},
+                                         {0, 0, 6, 7, 0} };
+            //Dijkstra(graph, 0);
+            //Dijkstra(graph2, 0);
+            Dijkstra(graph3, 0);
         }
 
         /** Finn korteste vei mellom V noder */
@@ -19,7 +33,7 @@
             bool[] visited = new bool[v];
             int[] distance = new int[v];
              
-            for (int i = 0; i < graph.Length; i++) // For hver node i graph
+            for (int i = 0; i < v; i++) // For hver node i graph
             {
                 distance[i] = int.MaxValue; // Sett distanse til høyest mulig verdi 
             }
