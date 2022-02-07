@@ -29,7 +29,7 @@ namespace DijkstrasAlgoritme
                                          {0, 2, 3, 0, 0, 0, 0, 0, 0, 0},
                                          {4, 0, 3, 0, 0, 5, 0, 6, 0, 0},
                                          {0, 3, 0, 0, 0, 5, 2, 0, 0, 0},
-                                         {0, 7, 0, 5, 4, 0, 0, 2, 0, 0},
+                                         {0, 7, 0, 5, 4, 0, 0, 2, 5, 0},
                                          {0, 0, 0, 0, 2, 0, 0, 0, 2, 0},
                                          {0, 0, 0, 6, 0, 2, 0, 0, 0, 4},
                                          {0, 0, 0, 0, 0, 5, 2, 0, 0, 3},
@@ -37,9 +37,9 @@ namespace DijkstrasAlgoritme
 
             int[,] graph5 = new int[,] { {0, 3, 0, 4, 0, 0, 0, 0, 0, 0, 0},
                                          {3, 0, 2, 0, 3, 7, 0, 0, 0, 0, 0},
-                                         {0, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0},
+                                         {0, 2, 0, 3, 0, 0, 0, 0, 0, 0, 0},
                                          {4, 0, 3, 0, 0, 5, 0, 6, 0, 0, 0},
-                                         {0, 3, 0, 0, 0, 5, 2, 0, 0, 0, 8},
+                                         {0, 3, 0, 0, 0, 4, 2, 0, 0, 0, 0},
                                          {0, 7, 0, 5, 4, 0, 0, 2, 5, 0, 0},
                                          {0, 0, 0, 0, 2, 0, 0, 0, 2, 7, 0},
                                          {0, 0, 0, 6, 0, 2, 0, 0, 0, 4, 0},
@@ -69,8 +69,12 @@ namespace DijkstrasAlgoritme
             Dijkstra(graph2, 0, 5);
             Console.WriteLine("\nGraf 3: fem noder");
             Dijkstra(graph3, 0, 5);
+            Console.WriteLine("\nGraf 3: fem noder, start node er 1");
+            Dijkstra(graph3, 1, 5);
             Console.WriteLine("\nGraf 4: 10 noder");
             Dijkstra(graph4, 0, 10);
+            Console.WriteLine("\nGraf 4: 10 noder, start node er 5");
+            Dijkstra(graph4, 5, 10);
             Console.WriteLine("\nGraf 5: 11 noder");
             Dijkstra(graph5, 0, 11);
             Console.WriteLine("\nGraf 5: 11 noder, start node er 4");
